@@ -11,7 +11,13 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.ALERT_MESSAGE), 'Alert message is nor presented'
     def should_be_alert_message_contains_product_name(self):
         assert self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text == self.browser.find_element(
-            *ProductPageLocators.ALERT_MESSAGE_NAME_PRODUCT).text, 'Message allert is not contains product name'
+            *ProductPageLocators.ALERT_MESSAGE_NAME_PRODUCT).text, 'Message alert is not contains product name'
     def should_be_alert_message_contains_product_price(self):
         assert self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text in self.browser.find_element(
-            *ProductPageLocators.ALERT_MESSAGE_PRICE_PRODUCT).text, 'Message allert is not contains product price'
+            *ProductPageLocators.ALERT_MESSAGE_PRICE_PRODUCT).text, 'Message alert is not contains product price'
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.ALERT_MESSAGE), \
+            "Alert message is presented, but should not be"
+    def should_be_success_message_is_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.ALERT_MESSAGE), \
+            "Alert message is not disappeared, but should be"
